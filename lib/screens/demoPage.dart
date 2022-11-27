@@ -52,10 +52,11 @@ class DatePickerPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(4.0),
                             color: Colors.blue
                         ),
-                        child:  RawMaterialButton(onPressed: () {
-                          controller.today.value=controller.today.value.add(Duration(days: 30));
-                        },
-                          child: Text("30 days later",style: TextStyle(color: Style.white_color),),
+                        child:
+                          RawMaterialButton(onPressed: () {
+                            controller.today1.value=controller.today1.value.add(Duration(days: 30));
+                          },
+                            child: Text("30 days later",style: TextStyle(color: Style.white_color),),
 
                         ),
                       ),
@@ -67,22 +68,20 @@ class DatePickerPage extends StatelessWidget {
                   Column(
 
                     children: <Widget>[
-
                       Container(
-                        child: Obx(
-                              () => RawMaterialButton(
-                            onPressed: () {
-                              controller.today.value = controller
-                                  .today.value
-                                  .add(Duration(days: 15));
-                            },
-                            child: Text("15 days later"),
-                            fillColor: controller.isClicked == true
-                                ? Color(0xFF1DA1F2)
-                                : Color(0xFFEDF8FF),
-                          ),
+                        width:174,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.blue
+                        ),
+                        child:  RawMaterialButton(onPressed: () {
+                          controller.today1.value=controller.today1.value.add(Duration(days: 15));
+                        },
+                          child: Text("15 days later",style: TextStyle(color: Colors.white),),
+
                         ),
                       ),
+
                       SizedBox(height: 16,),
 
                       Container(
@@ -92,7 +91,7 @@ class DatePickerPage extends StatelessWidget {
                             color: Colors.blue
                         ),
                         child:  RawMaterialButton(onPressed: () {
-                          controller.today.value=controller.today.value.add(Duration(days: 60));
+                          controller.today1.value=controller.today1.value.add(Duration(days: 60));
                         },
                           child: Text("60 days later",style: TextStyle(color: Colors.white),),
 
@@ -237,7 +236,7 @@ class DatePickerPage extends StatelessWidget {
                 firstDay: DateTime.utc(2010, 8, 18),
                 lastDay: DateTime.utc(2030, 3, 14),
                 rowHeight: 43,
-                onDaySelected: controller.selectedDay, focusedDay: controller.today.value,
+                onDaySelected: controller.onDateSelected, focusedDay: controller.today.value,
               ),
             ):index==1?
             Obx(()=> TableCalendar(
@@ -265,7 +264,7 @@ class DatePickerPage extends StatelessWidget {
               firstDay: DateTime.utc(2010, 8, 18),
               lastDay: DateTime.utc(2030, 3, 14),
               rowHeight: 43,
-              onDaySelected: controller.selectedDay, focusedDay: controller.today1.value,
+              onDaySelected: controller.onDateSelected, focusedDay: controller.today1.value,
             ),
             ):Obx(()=> TableCalendar(
               headerStyle: HeaderStyle(
@@ -292,7 +291,7 @@ class DatePickerPage extends StatelessWidget {
               firstDay: DateTime.utc(2010, 8, 18),
               lastDay: DateTime.utc(2030, 3, 14),
               rowHeight: 43,
-              onDaySelected: controller.selectedDay, focusedDay: controller.today2.value,
+              onDaySelected: controller.onDateSelected, focusedDay: controller.today2.value,
             ),
             ),
             Padding(
