@@ -458,7 +458,7 @@ class DatePickerPage extends StatelessWidget {
                                     "second": controller.today1.value,
                                     "third": controller.today2.value
                                   });
-                                  controller.onClose();
+                                  Get.delete<DatePickerController>();
 
                                 },
                                 child: Text(
