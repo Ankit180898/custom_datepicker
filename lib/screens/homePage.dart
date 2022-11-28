@@ -80,7 +80,15 @@ class _HomePage extends State<HomePage> {
                           elevation: 0,
                           child: Text("Without preset",style: TextStyle(fontSize: 16,fontFamily: 'Roboto',fontWeight: FontWeight.w500,color: Colors.white),),
                           onPressed: () {
-                            Get.to(DatePickerPage(index: 0,));
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    backgroundColor: Style.white_color,
+                                    //this right here
+                                    child: DatePickerPage(index:0),
+                                  );
+                                });
                           },
                         )),
                     SizedBox(height: 16,),
@@ -143,13 +151,23 @@ class _HomePage extends State<HomePage> {
                         width: double.infinity,
                         decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(8.0),color: Color(0xFF1DA1F2),),
-                        height: MediaQuery.of(context).size.height * 0.07,
+                        height: Get.height * 0.07,
 
                         child: RawMaterialButton(
                           elevation: 0,
                           child: Text("With 4 preset",style: TextStyle(fontSize: 16,fontFamily: 'Roboto',fontWeight: FontWeight.w500,color: Colors.white),),
                           onPressed: () {
-                            Get.to(DatePickerPage(index: 1,));
+                            // Get.to(DatePickerPage(index: 1,));
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    backgroundColor: Style.white_color,
+                                  //this right here
+                                    child: DatePickerPage(index:1),
+                                  );
+                                });
+
                           },
                         )),
                     SizedBox(height: 16,),
@@ -218,7 +236,15 @@ class _HomePage extends State<HomePage> {
                           elevation: 0,
                           child: Text("With 6 preset",style: TextStyle(fontSize: 16,fontFamily: 'Roboto',fontWeight: FontWeight.w500,color: Colors.white),),
                           onPressed: () {
-                            Get.to(DatePickerPage(index: 2,));
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    backgroundColor: Style.white_color,
+                                    //this right here
+                                    child: DatePickerPage(index:2),
+                                  );
+                                });
                           },
                         )),
                     SizedBox(height: 16,),
