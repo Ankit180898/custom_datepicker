@@ -5,6 +5,7 @@ class DatePickerController extends GetxController{
   var today1=DateTime.now().obs;
   var today2=DateTime.now().obs;
   var index=0;
+  var isClicked=false.obs;
 
   Future<DateTime> onDateSelected(DateTime day,DateTime focusDay)  async{
     if(index==0){
@@ -17,6 +18,7 @@ class DatePickerController extends GetxController{
       return today2.value=day;
     }
   }
+
 
 
 }

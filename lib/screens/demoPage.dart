@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../controller/datePicker_controller.dart';
+import '../dateExtension.dart';
 class DatePickerPage extends StatelessWidget {
   int index;
   DatePickerPage({super.key, required this.index});
@@ -13,9 +14,11 @@ class DatePickerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tue=DateTime.now();
     print("index $index");
     controller.index=index;
     print("firstdate ${controller.today.value} SeconDate ${controller.today1.value}");
+    print("tuesday ${(tue.day-tue.weekday)%DateTime.daysPerWeek}");
     return Scaffold(
       appBar: AppBar(
         title: Text("Something"),
@@ -105,110 +108,131 @@ class DatePickerPage extends StatelessWidget {
               ),
             ):Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 40),
-              child: Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
 
-                      children: [
+                    children: [
 
-                        Container(
-                          width:174,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.blue
-                          ),
-                          child:  RawMaterialButton(onPressed: () {  },
-                            child: Text("Never ends",style: TextStyle(color: Colors.white),),
-
-                          ),
+                      Container(
+                        width:174,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.blue
                         ),
-                        SizedBox(width: 16,),
+                        child:  RawMaterialButton(onPressed: () {
+                          controller.today2.value=controller.today2.value.subtract(Duration(days: 1));
+                        },
+                          child: Text("Yesterday",style: TextStyle(color: Style.white_color),),
 
-                        Container(
-                          width:174,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.blue
-                          ),
-                          child:  RawMaterialButton(onPressed: () {  },
-                            child: Text("Never ends",style: TextStyle(color: Colors.white),),
-
-                          ),
                         ),
+                      ),
+                      SizedBox(width: 16,),
 
-
-                      ],
-                    ),
-                    SizedBox(height: 16,),
-                    Row(
-
-                      children: <Widget>[
-
-                        Container(
-                          width:174,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.blue
-                          ),
-                          child:  RawMaterialButton(onPressed: () {  },
-                            child: Text("Never ends",style: TextStyle(color: Colors.white),),
-
-                          ),
+                      Container(
+                        width:174,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.blue
                         ),
-                        SizedBox(width: 16,),
+                        child:  RawMaterialButton(onPressed: () {
+                          controller.today2.value=DateTime.now();
+                        },
+                          child: Text("Today",style: TextStyle(color: Style.white_color),),
 
-                        Container(
-                          width:174,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.blue
-                          ),
-                          child:  RawMaterialButton(onPressed: () {  },
-                            child: Text("Never ends",style: TextStyle(color: Colors.white),),
-
-                          ),
                         ),
+                      ),
 
 
-                      ],
-                    ),
-                    SizedBox(height: 16,),
-                    Row(
+                    ],
+                  ),
+                  SizedBox(height: 16,),
+                  Row(
 
-                      children: <Widget>[
+                    children: <Widget>[
 
-                        Container(
-                          width:174,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.blue
-                          ),
-                          child:  RawMaterialButton(onPressed: () {  },
-                            child: Text("Never ends",style: TextStyle(color: Colors.white),),
-
-                          ),
+                      Container(
+                        width:174,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.blue
                         ),
-                        SizedBox(width: 16,),
+                        child:  RawMaterialButton(onPressed: () {
+                          controller.today2.value=controller.today2.value.add(Duration(days: 1));
+                        },
+                          child: Text("Tomorrow",style: TextStyle(color: Colors.white),),
 
-                        Container(
-                          width:174,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.blue
-                          ),
-                          child:  RawMaterialButton(onPressed: () {  },
-                            child: Text("Never ends",style: TextStyle(color: Colors.white),),
-
-                          ),
                         ),
+                      ),
+                      SizedBox(width: 16,),
+
+                      Container(
+                        width:174,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.blue
+                        ),
+                        child:  RawMaterialButton(onPressed: () {
+
+                            controller.today2.value=controller.today2.value.add(Duration(days:(controller.today2.value.weekday+controller.today2.value.day) % DateTime.daysPerWeek));
+
+                          // controller.today2.value=controller.today2.value.subtract(Duration(days:(controller.today2.value.weekday-controller.today2.value.day)%DateTime.daysPerWeek));
+                          // print("newTuesday ${controller.today2.value}");
 
 
-                      ],
-                    ),
-                  ],
-                ),
+                        },
+                          child: Text("This Saturday",style: TextStyle(color: Colors.white),),
+
+                        ),
+                      ),
+
+
+                    ],
+                  ),
+                  SizedBox(height: 16,),
+                  Row(
+
+                    children: <Widget>[
+
+                      Container(
+                        width:174,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.blue
+                        ),
+                        child:  RawMaterialButton(onPressed: () {
+                          controller.today2.value=controller.today2.value.subtract(Duration(days:controller.today2.value.weekday));
+
+                          },
+                          child: Text("This Sunday",style: TextStyle(color: Colors.white),),
+
+                        ),
+                      ),
+                      SizedBox(width: 16,),
+
+                      Container(
+                        width:174,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.blue
+                        ),
+                        child:  RawMaterialButton(onPressed: () {
+                          print("${controller.today2.value.weekday}");
+                          controller.today2.value=controller.today2.value.next(DateTime.tuesday);
+                           print("nextTuesDay ${controller.today2.value.next(DateTime.tuesday)}");
+
+                        },
+                          child: Text("Next Tuesday",style: TextStyle(color: Colors.white),),
+
+                        ),
+                      ),
+
+
+                    ],
+                  ),
+                ],
               ),
             ),
             index==0?Obx(()=> TableCalendar(

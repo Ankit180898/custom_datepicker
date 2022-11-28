@@ -1,4 +1,5 @@
 import 'package:custom_datepicker/controller/datePicker_controller.dart';
+import 'package:custom_datepicker/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -17,11 +18,36 @@ class _HomePage extends State<HomePage> {
   void initState() {
     super.initState();
   }
+  bool isClicked=false;
+  bool isClicked1=false;
+  bool isClicked2=false;
+  bool afterDate=false;
+  bool afterDate1=false;
+  bool afterDate2=false;
 
   @override
   Widget build(BuildContext context) {
     // final controller=Get.put(DatePickerController());
     var date = Get.arguments;
+    if((date!=null && isClicked==false)){
+      afterDate=true;
+
+    }
+    else{
+      afterDate=false;
+    }
+    if(date!=null && isClicked1==false){
+      afterDate1=true;
+    }
+    else{
+      afterDate1=false;
+    }
+    if(date!=null && isClicked2==false){
+      afterDate2=true;
+    }
+    else{
+      afterDate2=false;
+    }
     // print("firstdate ${date["first"]} secondDate ${date["second"]} thirdDate ${date["third"]}");
     return Scaffold(
         appBar: AppBar(
@@ -58,46 +84,56 @@ class _HomePage extends State<HomePage> {
                           },
                         )),
                     SizedBox(height: 16,),
-                       date==null?Text(""):Container(
+                       date==null?Text(""):Visibility(
+                         visible: afterDate,
+                         child: Container(
 
-                            decoration:
-                            BoxDecoration(borderRadius: BorderRadius.circular(68.0),color: Color(0xFFEDF8FF),),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.calendar_today_outlined,
-                                    color: Color(0xFF1DA1F2),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Text(
-                                    DateFormat('d MMM yyyy').format(date["first"]),
-                                    style: TextStyle(
-                                        fontFamily: "Roboto",
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  GestureDetector(
-                                    onTap: (){
-
-                                    },
-                                    child: Icon(
-                                      Icons.close,
+                              decoration:
+                              BoxDecoration(borderRadius: BorderRadius.circular(68.0),color: Color(0xFFEDF8FF),),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today_outlined,
                                       color: Color(0xFF1DA1F2),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                    Text(
+                                      DateFormat('d MMM yyyy').format(date["first"]),
+                                      style: TextStyle(
+                                          fontFamily: "Roboto",
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        setState(() {
+                                          if(isClicked==true){
+                                            isClicked=false;
+                                          }else{
+                                            isClicked=true;
+                                          }
 
-                                ],
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Style.primary_color,
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
+                       ),
 
                   ],
                 ),
@@ -118,7 +154,9 @@ class _HomePage extends State<HomePage> {
                         )),
                     SizedBox(height: 16,),
 
-                    date==null?Text(""):Container(
+                    date==null?Text(""):Visibility(
+                      visible: afterDate1,
+                      child: Container(
 
                         decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(68.0),color: Color(0xFFEDF8FF),),
@@ -135,7 +173,7 @@ class _HomePage extends State<HomePage> {
                                 width: 12,
                               ),
                               Text(
-                                  DateFormat('d MMM yyyy').format(date["second"]),
+                                DateFormat('d MMM yyyy').format(date["second"]),
                                 style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontWeight: FontWeight.w400,
@@ -146,11 +184,18 @@ class _HomePage extends State<HomePage> {
                               ),
                               GestureDetector(
                                 onTap: (){
+                                  setState(() {
+                                    if(isClicked1==true){
+                                      isClicked1=false;
+                                    }else{
+                                      isClicked1=true;
+                                    }
 
+                                  });
                                 },
                                 child: Icon(
                                   Icons.close,
-                                  color: Color(0xFF1DA1F2),
+                                  color: Style.primary_color,
                                 ),
                               ),
 
@@ -158,6 +203,7 @@ class _HomePage extends State<HomePage> {
                           ),
                         ),
                       ),
+                    ),
                   ],
                 ),
                 Column(
@@ -177,43 +223,53 @@ class _HomePage extends State<HomePage> {
                         )),
                     SizedBox(height: 16,),
 
-                    date==null?Text(""):Container(
+                    date==null?Text(""):Visibility(
+                      visible: afterDate2,
+                      child: Container(
 
-                      decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(68.0),color: Color(0xFFEDF8FF),),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.calendar_today_outlined,
-                              color: Color(0xFF1DA1F2),
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Text(
-                              DateFormat('d MMM yyyy').format(date["third"]),
-                              style: TextStyle(
-                                  fontFamily: "Roboto",
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16),
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            GestureDetector(
-                              onTap: (){
-
-                              },
-                              child: Icon(
-                                Icons.close,
+                        decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(68.0),color: Color(0xFFEDF8FF),),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.calendar_today_outlined,
                                 color: Color(0xFF1DA1F2),
                               ),
-                            ),
+                              SizedBox(
+                                width: 12,
+                              ),
+                              Text(
+                                DateFormat('d MMM yyyy').format(date["third"]),
+                                style: TextStyle(
+                                    fontFamily: "Roboto",
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16),
+                              ),
+                              SizedBox(
+                                width: 12,
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    if(isClicked2==true){
+                                      isClicked2=false;
+                                    }else{
+                                      isClicked2=true;
+                                    }
 
-                          ],
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.close,
+                                  color: Style.primary_color,
+                                ),
+                              ),
+
+                            ],
+                          ),
                         ),
                       ),
                     ),
