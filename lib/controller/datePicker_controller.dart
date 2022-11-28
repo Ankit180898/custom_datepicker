@@ -18,6 +18,11 @@ class DatePickerController extends GetxController{
       return today2.value=day;
     }
   }
+  @override
+  void onClose() {
+    dispose();
+    super.onClose();
+  }
 
 
 

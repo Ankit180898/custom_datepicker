@@ -173,7 +173,7 @@ class _HomePage extends State<HomePage> {
                                 width: 12,
                               ),
                               Text(
-                                DateFormat('d MMM yyyy').format(date["second"]),
+                                date["second"]==null?"":DateFormat('d MMM yyyy').format(date["second"]),
                                 style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontWeight: FontWeight.w400,
@@ -242,7 +242,7 @@ class _HomePage extends State<HomePage> {
                                 width: 12,
                               ),
                               Text(
-                                DateFormat('d MMM yyyy').format(date["third"]),
+                                date["third"]==null?"":DateFormat('d MMM yyyy').format(date["third"]),
                                 style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontWeight: FontWeight.w400,
