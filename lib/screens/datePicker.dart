@@ -15,6 +15,7 @@ class DatePickerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isAactive = true;
     var tue = DateTime.now();
     print("index $index");
     controller.index = index;
@@ -47,13 +48,20 @@ class DatePickerPage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        child: Text('Never ends',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                         ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(0);
+                                          },
+                                          child: Text('Never ends',style: TextStyle(color: controller.isClicked.value==0?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor: controller.isClicked.value==0
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -61,15 +69,21 @@ class DatePickerPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today1.value=controller.today1.value.add(Duration(days: 15));
-                                        },
-                                        child: Text('15 days later',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(1);
+                                            controller.today1.value=controller.today1.value.add(Duration(days: 15));
+                                          },
+                                          child: Text('15 days later',style: TextStyle(color: controller.isClicked.value==1?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor: controller.isClicked.value==1
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -78,15 +92,21 @@ class DatePickerPage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today1.value=controller.today1.value.add(Duration(days: 60));
-                                        },
-                                        child: Text('60 days later',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed:() {
+                                            controller.selectedButton(2);
+                                            controller.today1.value=controller.today1.value.add(Duration(days: 60));
+                                          },
+                                          child: Text('60 days later',style: TextStyle(color: controller.isClicked.value==2?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==2
+                                          ? Style.primary_color
+                                            : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -94,15 +114,21 @@ class DatePickerPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today1.value=controller.today1.value.add(Duration(days: 30));
-                                        },
-                                        child: Text('30 days later',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(3);
+                                            controller.today1.value=controller.today1.value.add(Duration(days: 30));
+                                          },
+                                          child: Text('30 days later',style: TextStyle(color: controller.isClicked.value==3?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==3
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -120,18 +146,24 @@ class DatePickerPage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today2.value = controller
-                                              .today2.value
-                                              .subtract(Duration(days: 1));
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(4);
+                                            controller.today2.value = controller
+                                                .today2.value
+                                                .subtract(Duration(days: 1));
 
-                                        },
-                                        child: Text('Yesterday',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                          },
+                                          child: Text('Yesterday',style: TextStyle(color: controller.isClicked.value==4?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==4
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -139,15 +171,21 @@ class DatePickerPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today2.value = DateTime.now();
-                                        },
-                                        child: Text('Today',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(5);
+                                            controller.today2.value = DateTime.now();
+                                          },
+                                          child: Text('Today',style: TextStyle(color: controller.isClicked.value==5?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==5
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -156,17 +194,23 @@ class DatePickerPage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today2.value = controller
-                                              .today2.value
-                                              .add(Duration(days: 1));
-                                        },
-                                        child: Text('Tomorrow',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(6);
+                                            controller.today2.value = controller
+                                                .today2.value
+                                                .add(Duration(days: 1));
+                                          },
+                                          child: Text('Tomorrow',style: TextStyle(color: controller.isClicked.value==6?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==6
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -174,16 +218,23 @@ class DatePickerPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today2.value = controller.today2.value.add(Duration(days:((6-controller.today2.value.weekday) % 7 )) );
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(7);
 
-                                        },
-                                        child: Text('This Saturday',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            controller.today2.value = controller.today2.value.add(Duration(days:((6-controller.today2.value.weekday) % 7 )) );
+
+                                          },
+                                          child: Text('This Saturday',style: TextStyle(color: controller.isClicked.value==7?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==7
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -192,18 +243,25 @@ class DatePickerPage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today2.value = controller
-                                              .today2.value
-                                              .subtract(Duration(
-                                              days: controller
-                                                  .today2.value.weekday));                                        },
-                                        child: Text('This Sunday',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(8);
+
+                                            controller.today2.value = controller
+                                                .today2.value
+                                                .subtract(Duration(
+                                                days: controller
+                                                    .today2.value.weekday));                                        },
+                                          child: Text('This Sunday',style: TextStyle(color: controller.isClicked.value==8?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==8
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -211,17 +269,24 @@ class DatePickerPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          controller.today2.value = controller
-                                              .today2.value
-                                              .next(DateTime.tuesday);
-                                        },
-                                        child: Text('Next Tuesday',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
-                                        style: ElevatedButton.styleFrom(
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4), // <-- Radius
+                                      child: Obx(()=>
+                                         ElevatedButton(
+                                          onPressed: () {
+                                            controller.selectedButton(9);
+
+                                            controller.today2.value = controller
+                                                .today2.value
+                                                .next(DateTime.tuesday);
+                                          },
+                                          child: Text('Next Tuesday',style: TextStyle(color: controller.isClicked.value==9?Style.white_color:Style.primary_color,fontSize: 14,fontFamily: "Roboto",fontWeight: FontWeight.w400),),
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0,
+                                            backgroundColor:  controller.isClicked.value==9
+                                                ? Style.primary_color
+                                                : Style.disabled_blue,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4), // <-- Radius
+                                            ),
                                           ),
                                         ),
                                       )),
@@ -393,6 +458,8 @@ class DatePickerPage extends StatelessWidget {
                                     "second": controller.today1.value,
                                     "third": controller.today2.value
                                   });
+                                  controller.onClose();
+
                                 },
                                 child: Text(
                                   "Save",

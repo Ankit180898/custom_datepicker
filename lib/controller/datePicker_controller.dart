@@ -5,8 +5,8 @@ class DatePickerController extends GetxController{
   var today1=DateTime.now().obs;
   var today2=DateTime.now().obs;
   var index=0;
-  var isClicked=false.obs;
-
+  var isClicked=0.obs;
+  var isClicked1=0.obs;
   Future<DateTime> onDateSelected(DateTime day,DateTime focusDay)  async{
     if(index==0){
       return today.value=day;
@@ -18,12 +18,15 @@ class DatePickerController extends GetxController{
       return today2.value=day;
     }
   }
-  @override
-  void onClose() {
-    dispose();
-    super.onClose();
+  selectedButton(int indexes){
+    isClicked.value=indexes;
+  }
+  selectedButtons(int indexes){
+    isClicked1.value=indexes;
+  }
+
+
   }
 
 
 
-}
