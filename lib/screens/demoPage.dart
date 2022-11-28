@@ -176,13 +176,8 @@ class DatePickerPage extends StatelessWidget {
                                   Expanded(
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          controller.today2.value =
-                                              controller.today2.value.add(Duration(
-                                                  days: (controller.today2.value
-                                                      .weekday +
-                                                      controller
-                                                          .today2.value.day) %
-                                                      DateTime.daysPerWeek));
+                                          controller.today2.value = controller.today2.value.add(Duration(days:((6-controller.today2.value.weekday) % 7 )) );
+
                                         },
                                         child: Text('This Saturday',style: TextStyle(color: Style.white_color,fontSize: 14,fontFamily: "Roboto"),),
                                         style: ElevatedButton.styleFrom(

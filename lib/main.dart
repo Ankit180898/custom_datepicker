@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Date Picker",
-      color: Style.primary_color,
+      theme: ThemeData(
+        primarySwatch: Colors.blue
+      ),
       home: HomePage(),
     );
   }
