@@ -1,3 +1,4 @@
+import 'package:custom_datepicker/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Date Picker",
+      color: Style.primary_color,
       home: HomePage(),
     );
   }

@@ -330,12 +330,11 @@ class DatePickerPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      flex: 1,
                       child: Row(
-                        mainAxisSize: MainAxisSize.min,
+
                         children: [
                           Icon(
                             Icons.calendar_today_outlined,
@@ -364,7 +363,6 @@ class DatePickerPage extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      flex: 1,
                       child: Row(
                         children: [
                           Expanded(
